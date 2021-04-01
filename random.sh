@@ -6,4 +6,4 @@ s3='fucking gfw'
 s4='瞅啥瞅?'
 s5='学业繁重......'
 rndm="s$((`date +%s%N`%5+1))"
-echo ${rndm}
+echo ${$rndm}
