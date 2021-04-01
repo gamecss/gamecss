@@ -7,4 +7,4 @@ s4='瞅啥瞅?'
 s5='学业繁重......'
 rndm=$((`date +%s%N`%5+1))
 
-echo $s$rndm
+echo ${s$rndm}
