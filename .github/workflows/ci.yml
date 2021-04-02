@@ -15,8 +15,9 @@ jobs:
           rm README.md
           bash random.sh
           echo "  " >> README.md
-          echo "![gamecss's GitHub stats](https://github-readme-stats.vercel.app/api?username=gamecss&show_icons=true)" >> README.md
-          echo "![gamecss's most used languages](https://github-readme-stats.vercel.app/api/top-langs/?username=gamecss&layout=compact)" >> README.md
+          echo "![gamecss's GitHub stats](https://github-readme-stats.vercel.app/api?username=gamecss&show_icons=true)  " >> README.md
+          echo "![gamecss's most used languages](https://github-readme-stats.vercel.app/api/top-langs/?username=gamecss&layout=compact)  " >> README.md
+          echo -n "[My blog](https://blog.gamecss.ga)" >> README.md
           git add README.md
           git config --global user.email "1156393759@qq.com"
           git config --global user.name "github-actions"
