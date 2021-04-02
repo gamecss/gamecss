@@ -10,4 +10,4 @@ s7='混吃等死'
 
 rndm="s$((`date +%s%N`%7+1))"
 says=`eval echo '$'"$rndm"`
-echo -n $says
+echo -n $says > README.md
