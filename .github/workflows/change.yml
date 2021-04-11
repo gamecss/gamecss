@@ -1,4 +1,4 @@
-name: CI
+name: Change README
 on:
   push:
     branches: [ main ]
@@ -6,11 +6,11 @@ on:
     - cron: '0 8 * * *'
     
 jobs:
-  build:
+  change:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Try
+      - name: Change README
         run: |
           rm README.md
           bash random.sh
