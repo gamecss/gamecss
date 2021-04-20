@@ -3,7 +3,7 @@ on:
   push:
     branches: [ main ]
   schedule:
-    - cron: '0 8 * * *'
+    - cron: '0 0 * * *'
     
 jobs:
   change:
@@ -20,7 +20,7 @@ jobs:
           echo -n "&#62;[My blog](https://blog.gamecss.ga)&#60; &#62;[Bilibili](https://space.bilibili.com/479161081)&#60;" >> README.md
           git add README.md
           git config --global user.email "1156393759@qq.com"
-          git config --global user.name "github-actions"
+          git config --global user.name "github-actions[bot]"
           git commit -m "update README.md"
           git remote set-url origin https://gamecss:${{ secrets.GITHUB_TOKEN }}@github.com/gamecss/gamecss.git
           git push -f origin main
