@@ -25,3 +25,4 @@ jobs:
           true
           git remote set-url origin https://gamecss:${{ secrets.GITHUB_TOKEN }}@github.com/gamecss/gamecss.git
           git push -f origin main
+          true
