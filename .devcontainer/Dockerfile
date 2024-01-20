@@ -1,4 +1,4 @@
-ARG VARIANT="xenial"
+ARG VARIANT="trusty"
 FROM buildpack-deps:${VARIANT}-curl
 USER root
 
@@ -8,8 +8,9 @@ RUN apt-get update \
     && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y dist-upgrade \
     && apt-get -y install \
-    apt-get install git ccache automake lzop bison gperf build-essential zip curl zlib1g-dev g++-multilib python-networkx libxml2-utils bzip2 libbz2-dev libbz2-1.0 libghc-bzlib-dev squashfs-tools pngcrush schedtool dpkg-dev liblz4-tool make optipng maven libc6-dev linux-libc-dev gcc-multilib g++-5-multilib libssl-dev openjdk-7-jdk sudo software-properties-common tmux \
-    && add-apt-repository ppa:jonathonf/python-3.6 -y \
+    git-core gnupg flex bison gperf build-essential zip curl zlib1g-dev libc6-dev-i386 libncurses5 lib32ncurses5-dev x11proto-core-dev libx11-dev lib32z-dev libgl1-mesa-dev libxml2-utils xsltproc unzip openjdk-7-jdk \
+    tmux \
+    && add-apt-repository -y ppa:jblgf0/python \
     && apt-get install python3.6 \
     && apt-get autoremove -y \
     && apt-get clean -y \
