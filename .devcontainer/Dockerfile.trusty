@@ -3,6 +3,8 @@ FROM buildpack-deps:${VARIANT}-curl
 USER root
 
 LABEL dev.containers.features="common"
+ENV LC_ALL C
+ENV LD_LIBRARY_PATH /lib:/usr/lib:/usr/local/lib:/usr/local/ssl/lib
 
 RUN apt-get update \
     && export DEBIAN_FRONTEND=noninteractive \
@@ -15,10 +17,20 @@ RUN apt-get update \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
 
-RUN curl -O https://www.python.org/ftp/python/3.7.17/Python-3.7.17.tgz \
-    && tar xzf Python-3.7.17.tgz \
-    && cd Python-3.7.17 \
-    && ./configure --enable-optimizations \
-    && make altinstall \
+# Build py3.8 with openssl, for repo
+RUN curl -kO https://www.openssl.org/source/openssl-1.1.1w.tar.gz \
+    && tar xzf openssl-1.1.1w.tar.gz \
+    && cd openssl-1.1.1w \
+    && ./config shared --prefix=/usr/local/ssl --libdir=lib --openssldir=/etc/ssl \
+    && make -j`nproc` \
+    && make install_sw -j`nproc` \
     && cd .. \
-    && rm -rf Python3.7.17 Python3.7.17.tgz
+    && rm -rf openssl-1.1.1w openssl-1.1.1w.tar.gz \
+    && curl -O https://www.python.org/ftp/python/3.8.18/Python-3.8.18.tgz \
+    && tar xzf Python-3.8.18.tgz \
+    && cd Python-3.8.18 \
+    && sed -i "s/#SSL=/SSL=/" Modules/Setup \
+    && ./configure --enable-optimizations --enable-shared --with-openssl=/usr/local/ssl \
+    && make altinstall -j`nproc` \
+    && cd .. \
+    && rm -rf Python3.8.18 Python3.8.18.tgz
