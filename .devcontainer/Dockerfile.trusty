@@ -35,6 +35,7 @@ RUN curl -kO https://www.openssl.org/source/openssl-1.1.1w.tar.gz \
     && ./configure --enable-optimizations --enable-shared --with-openssl=/usr/local/ssl \
     && make altinstall -j`nproc` \
     && cd .. \
-    && rm -rf Python3.8.18 Python3.8.18.tgz
+    && rm -rf Python-3.8.18 Python-3.8.18.tgz
 
-RUN curl https://storage.googleapis.com/git-repo-downloads/repo > /usr/bin/repo
+RUN curl https://storage.googleapis.com/git-repo-downloads/repo > /usr/bin/repo \
+    && chmod +x /usr/bin/repo
